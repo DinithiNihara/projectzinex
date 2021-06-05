@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=> true]); 
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 Route::resource('vehicle', 'App\Http\Controllers\VehicleController');
 
