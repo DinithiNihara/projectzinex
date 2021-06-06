@@ -31,3 +31,7 @@ Route::post('photos/store','App\Http\Controllers\PhotosController@store')->name(
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('offers', 'App\Http\Controllers\OfferController@index')->name('offers');
+Route::post('offers/search','App\Http\Controllers\OfferController@search')->name('offers/search');
+

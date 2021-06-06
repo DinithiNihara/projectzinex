@@ -170,7 +170,8 @@
         <nav class="navbar navbar-expand-xl navbar-light">
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form>
+                <form method="post" action="{{url('offers')}}">
+                    {{csrf_field()}}
                     <ul class="navbar-nav mr-auto">
                         <div class="container">
                             <select class="form-control">
@@ -213,7 +214,7 @@
                             <input class="date form-control" type="text" placeholder="Return Date" required>
                         </div>
                         <div class="container">
-                            <input type="submit" class="btn navbar-custom" value="Show Offers" />
+                            <a href="{{action('App\Http\Controllers\OfferController@search', 'car')}}"><input type="submit" class="btn navbar-custom" value="Show Offers" /></a>
                         </div>
                     </ul>
                 </form>

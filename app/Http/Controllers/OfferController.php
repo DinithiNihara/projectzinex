@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vehicle;
 
 class OfferController extends Controller
 {
@@ -13,7 +14,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        //
+        return view('offer.index');
     }
 
     /**
@@ -80,5 +81,15 @@ class OfferController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search($type)
+    {
+        /* $vehicles = DB::select('select * from vehicles where type = ?', [$type]);
+        var_dump($vehicles);
+        return view('offers', ['vehicle' => $vehicles]); */
+        /* $result= Vehicle::where("type",$type)->get();
+        return $result; */
+        /* return redirect()->route('offer')->with('success', $result); */
     }
 }

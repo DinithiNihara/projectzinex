@@ -3,6 +3,10 @@
     <head>
 
         <style>
+            body{
+                background-color: #555555 !important;
+            }
+
             .slideshow {
                 list-style-type: none;
             }
@@ -34,26 +38,26 @@
             }
 
             .slideshow li:nth-child(1) span {
-                background-image: url("/images/car1.jpg");
+                background-image: url("/images/photo1.jpg");
             }
 
             .slideshow li:nth-child(2) span {
-                background-image: url("/images/car2.jpg");
+                background-image: url("/images/photo2.jpg");
                 animation-delay: 6s;
             }
 
             .slideshow li:nth-child(3) span {
-                background-image: url("/images/car3.jpg");
+                background-image: url("/images/photo6.jpg");
                 animation-delay: 12s;
             }
 
             .slideshow li:nth-child(4) span {
-                background-image: url("/images/car4.jpg");
+                background-image: url("/images/photo4.jpg");
                 animation-delay: 18s;
             }
 
             .slideshow li:nth-child(5) span {
-                background-image: url("/images/car5.jpg");
+                background-image: url("/images/photo5.jpg");
                 animation-delay: 24s;
             }
 
