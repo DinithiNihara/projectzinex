@@ -2,6 +2,9 @@
 
 @section('content')
 
+<br>
+<a href="{!!url('/admin')!!}" class="btn btn-danger"> <- Admin Panel</a>
+
 <div class="row">
  <div class="col-md-12">
   <br />
@@ -51,6 +54,9 @@
   </table>
  </div>
 </div>
+
+
+
 <script>
     $(document).ready(function(){
      $('.delete_form').on('submit', function(){

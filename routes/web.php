@@ -35,3 +35,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('offers', 'App\Http\Controllers\OfferController@index')->name('offers');
 Route::post('offers/search','App\Http\Controllers\OfferController@search')->name('offers/search');
 
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::resource('request', 'App\Http\Controllers\RequestController');
