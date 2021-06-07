@@ -16,10 +16,8 @@ class PhotosController extends Controller
             $image_paths=json_decode($image["image_path"]);
             foreach($image_paths as $image_path){
                 array_push($all_images,$image_path);
-            }
-    
+            }   
         }
-
         return view('photos',compact('all_images'));
     }
 

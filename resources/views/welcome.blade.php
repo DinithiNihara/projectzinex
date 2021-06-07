@@ -1,95 +1,146 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <title>Laravel</title>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
+    <style>
+        body {
+            background-color: #555555 !important;
+        }
+
+        .slideshow {
+            list-style-type: none;
+        }
+
+        /* SLIDESHOW */
+        .slideshow,
+        .slideshow:after {
+            top: -16px;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            z-index: -1;
+        }
+
+        .slideshow li span {
+            position: absolute;
+            width: 100%;
+            height: 60%;
+            top: 22%;
+            left: 0px;
+            color: transparent;
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            opacity: 0;
+            z-index: 0;
+            animation: imageAnimation 30s linear infinite 0s;
+        }
+
+        .slideshow li:nth-child(1) span {
+            background-image: url("/images/photo1.jpg");
+        }
+
+        .slideshow li:nth-child(2) span {
+            background-image: url("/images/photo2.jpg");
+            animation-delay: 6s;
+        }
+
+        .slideshow li:nth-child(3) span {
+            background-image: url("/images/photo6.jpg");
+            animation-delay: 12s;
+        }
+
+        .slideshow li:nth-child(4) span {
+            background-image: url("/images/photo4.jpg");
+            animation-delay: 18s;
+        }
+
+        .slideshow li:nth-child(5) span {
+            background-image: url("/images/photo5.jpg");
+            animation-delay: 24s;
+        }
+
+
+        @keyframes imageAnimation {
+            0% {
+                opacity: 0;
+                animation-timing-function: ease-in;
             }
 
-            .full-height {
-                height: 100vh;
+            8% {
+                opacity: 1;
+                animation-timing-function: ease-out;
             }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
+            17% {
+                opacity: 1
             }
 
-            .position-ref {
-                position: relative;
+            25% {
+                opacity: 0
             }
 
-            .top-right {
-                position: absolute;
-                right: 50px;
-                top: 58px;
+            100% {
+                opacity: 0
+            }
+        }
+
+
+        @keyframes titleAnimation {
+            0% {
+                opacity: 0
             }
 
-            .content {
-                text-align: center;
+            8% {
+                opacity: 1
             }
 
-            .title {
-                font-size: 84px;
+            17% {
+                opacity: 1
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
+            19% {
+                opacity: 1
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
+            100% {
+                opacity: 0
             }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
+        }
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+        .no-cssanimations .cb-slideshow li span {
+            opacity: 1;
+        }
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+    </style>
+</head>
+
+<body>
+
+    @extends('layouts.app')
+
+    @section('content')
+        <!-- Background slideshow -->
+        <div class="container">
+            <ul class="slideshow">
+                <li><span>1</span></li>
+                <li><span>2</span></li>
+                <li><span>3</span></li>
+                <li><span>4</span></li>
+                <li><span>5</span></li>
+            </ul>
         </div>
-    </body>
+
+
+
+    @endsection
+</body>
+
 </html>

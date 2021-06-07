@@ -40,4 +40,4 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
-Route::resource('request', 'App\Http\Controllers\RequestController');
+Route::resource('crequest', 'App\Http\Controllers\RequestController');

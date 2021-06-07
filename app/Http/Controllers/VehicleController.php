@@ -57,7 +57,7 @@ class VehicleController extends Controller
             'description'     =>  $request->get('description')
         ]);
         $vehicle->save();
-        return redirect()->route('vehicle.create')->with('success', 'Data Added');
+        return redirect()->route('photos')->with('success', 'Data Added');
     }
 
     /**
@@ -113,8 +113,6 @@ class VehicleController extends Controller
         $vehicle->description = $request->get('description');
         $vehicle->save();
         return redirect()->route('vehicle.index')->with('success', 'Data Updated');
-    
-
     }
 
     /**

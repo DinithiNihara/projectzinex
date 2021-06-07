@@ -26,7 +26,7 @@
 <body>
 
     <div class="container mt-5">
-        <h3 class="text-center mb-5">Image Upload in Laravel</h3>
+        <h3 class="text-center mb-5">Upload Images of The Vehicle</h3>
         <form action="{{route('photos/store')}}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             @if ($message = Session::get('success'))

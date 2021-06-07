@@ -18,6 +18,45 @@ USE `projectzinex`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `customer_requests`
+--
+
+DROP TABLE IF EXISTS `customer_requests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_requests` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `p_location` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `r_location` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `service` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vehicle` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `passengers` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `p_date` date NOT NULL,
+  `p_time` time NOT NULL,
+  `r_date` date NOT NULL,
+  `r_time` time NOT NULL,
+  `message` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_requests`
+--
+
+LOCK TABLES `customer_requests` WRITE;
+/*!40000 ALTER TABLE `customer_requests` DISABLE KEYS */;
+INSERT INTO `customer_requests` VALUES (1,'Miss','Nihara Perera','niharaperera@gmail.com','0771234567','500, Colombo Road, Negombo','500, Colombo Road, Negombo','Tours','Van','5_12','2021-06-09','10:30:00','2021-06-10','10:30:00','Only 2 passengers','2021-06-07 11:35:51','2021-06-07 12:32:22');
+/*!40000 ALTER TABLE `customer_requests` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `drivers`
 --
 
@@ -87,7 +126,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +135,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(16,'2014_10_12_000000_create_users_table',2),(17,'2021_06_02_134540_create_images_table',2),(18,'2021_06_02_153221_create_vehicles_table',2),(19,'2021_06_02_155134_create_drivers_table',2),(20,'2021_06_02_155304_create_requests_table',2);
+INSERT INTO `migrations` VALUES (2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(16,'2014_10_12_000000_create_users_table',2),(17,'2021_06_02_134540_create_images_table',2),(18,'2021_06_02_153221_create_vehicles_table',2),(19,'2021_06_02_155134_create_drivers_table',2),(20,'2021_06_02_155304_create_requests_table',2),(21,'2021_06_07_133041_create_customer_requests_table',3);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +220,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,6 +229,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Nihara Perera','niharaperera3@gmail.com','$2y$10$UXaHmAWtfJd/n1JbV6.F3OMYtqqVdqSqTw03Pz4nLW95bHj84Sov2','a',NULL,'2021-06-07 07:35:00','2021-06-07 07:35:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +254,7 @@ CREATE TABLE `vehicles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,6 +263,7 @@ CREATE TABLE `vehicles` (
 
 LOCK TABLES `vehicles` WRITE;
 /*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
+INSERT INTO `vehicles` VALUES (1,'HG123456','Toyota','Camri','coupe',2018,2019,150,'a','Leather Seats','2021-06-07 11:25:26','2021-06-07 11:25:26'),(2,'HI123456','Toyota','Camri','coupe',2016,2016,150,'a','Leather Seats','2021-06-07 13:21:56','2021-06-07 13:21:56');
 /*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -235,4 +276,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-07  0:42:00
+-- Dump completed on 2021-06-08  0:55:52

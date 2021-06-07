@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Request;
+use App\Models\CustomerRequest;
 
 class RequestController extends Controller
 {
@@ -14,7 +14,8 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
+        $crequest = CustomerRequest::all()->toArray();
+        return view('crequest.index', compact('crequest'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        return view('request.create');
+        return view('crequest.create');
     }
 
     /**
@@ -39,24 +40,24 @@ class RequestController extends Controller
             'name'    =>  'required',
             'email'     =>  'required'
         ]);
-        $request = new Request([
+        $crequest = new CustomerRequest([
             'title'    =>  $request->get('title'),
             'name'    =>  $request->get('name'),
             'email'     =>  $request->get('email'),
-            'contact'    =>  $request->get('title'),
-            'p_location'    =>  $request->get('name'),
-            'r_location'     =>  $request->get('email'),
-            'service'    =>  $request->get('title'),
-            'vehicle'    =>  $request->get('name'),
-            'passengers'     =>  $request->get('email'),
-            'p_date'    =>  $request->get('title'),
-            'p_time'    =>  $request->get('name'),
-            'r_date'     =>  $request->get('email'),
-            'r_time'    =>  $request->get('name'),
-            'message'     =>  $request->get('email')
+            'contact'    =>  $request->get('contact'),
+            'p_location'    =>  $request->get('p_location'),
+            'r_location'     =>  $request->get('r_location'),
+            'service'    =>  $request->get('service'),
+            'vehicle'    =>  $request->get('vehicle'),
+            'passengers'     =>  $request->get('passengers'),
+            'p_date'    =>  $request->get('p_date'),
+            'p_time'    =>  $request->get('p_time'),
+            'r_date'     =>  $request->get('r_date'),
+            'r_time'    =>  $request->get('r_time'),
+            'message'     =>  $request->get('message')
         ]);
-        $request->save();
-        return redirect()->route('request.create')->with('success', 'Data Added');
+        $crequest->save();
+        return redirect()->route('crequest.create')->with('success', 'Data Added');
     }
 
     /**
@@ -78,7 +79,8 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $crequest = CustomerRequest::find($id);
+        return view('crequest.edit', compact('crequest', 'id'));
     }
 
     /**
@@ -90,7 +92,27 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'    =>  'required',
+            'email'     =>  'required'
+        ]);
+        $crequest = CustomerRequest::find($id);
+        $crequest->title = $request->get('title');
+        $crequest->name = $request->get('name');
+        $crequest->email = $request->get('email');
+        $crequest->contact = $request->get('contact');
+        $crequest->p_location = $request->get('p_location');
+        $crequest->r_location = $request->get('r_location');
+        $crequest->service = $request->get('service');
+        $crequest->vehicle = $request->get('vehicle');
+        $crequest->passengers = $request->get('passengers');
+        $crequest->p_date = $request->get('p_date');
+        $crequest->p_time = $request->get('p_time');
+        $crequest->r_date = $request->get('r_date');
+        $crequest->r_time = $request->get('r_time');
+        $crequest->message = $request->get('message');
+        $crequest->save();
+        return redirect()->route('crequest.index')->with('success', 'Data Updated');
     }
 
     /**
@@ -101,6 +123,8 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $crequest = CustomerRequest::find($id);
+        $crequest->delete();
+        return redirect()->route('crequest.index')->with('success', 'Data Deleted');
     }
 }
