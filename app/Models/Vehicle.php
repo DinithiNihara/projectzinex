@@ -10,5 +10,5 @@ class Vehicle extends Model
     use HasFactory;
 
     protected $fillable = ['regNo', 'manufacturer', 'model','type', 'mYear',
-    'rYear', 'cost', 'status', 'description'];
+    'rYear','service', 'cost', 'status', 'description'];
 }

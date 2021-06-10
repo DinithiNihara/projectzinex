@@ -42,6 +42,7 @@ class VehicleController extends Controller
             'model'    =>  'required',
             'type'    =>  'required',
             'mYear'     =>  'required',
+            'service' => 'required',
             'cost'    =>  'required',
             'status'     =>  'required'
         ]);
@@ -52,6 +53,7 @@ class VehicleController extends Controller
             'type'    =>  $request->get('type'),
             'mYear'     =>  $request->get('mYear'),
             'rYear'    =>  $request->get('rYear'),
+            'service' =>  $request->get('service'),
             'cost'     =>  $request->get('cost'),
             'status'    =>  $request->get('status'),
             'description'     =>  $request->get('description')
@@ -98,6 +100,7 @@ class VehicleController extends Controller
             'model'    =>  'required',
             'type'    =>  'required',
             'mYear'     =>  'required',
+            'service'    =>  'required',
             'cost'    =>  'required',
             'status'     =>  'required'
         ]);
@@ -108,11 +111,14 @@ class VehicleController extends Controller
         $vehicle->type = $request->get('type');
         $vehicle->mYear = $request->get('mYear');
         $vehicle->rYear = $request->get('rYear');
+        $vehicle->service = $request->get('service');
         $vehicle->cost = $request->get('cost');
         $vehicle->status = $request->get('status');
         $vehicle->description = $request->get('description');
         $vehicle->save();
-        return redirect()->route('vehicle.index')->with('success', 'Data Updated');
+
+        /* return redirect()->route('photosUpdate')->with(compact($id)); */
+        return redirect()->route('photosUpdate',[$id]);
     }
 
     /**

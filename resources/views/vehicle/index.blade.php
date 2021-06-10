@@ -29,6 +29,7 @@
     <th>Vehicle Type</th>
     <th>Model Year</th>
     <th>Registered Year</th>
+    <th>Service</th>
     <th>Cost per KM</th>
     <th>Status</th>
     <th>Description</th>
@@ -45,6 +46,7 @@
     <td>{{$row['type']}}</td>
     <td>{{$row['mYear']}}</td>
     <td>{{$row['rYear']}}</td>
+    <td>{{$row['service']}}</td>
     <td>{{$row['cost']}}</td>
     <td>{{$row['status']}}</td>
     <td>{{$row['description']}}</td>

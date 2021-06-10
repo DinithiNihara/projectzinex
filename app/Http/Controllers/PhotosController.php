@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PhotosController extends Controller
 {
@@ -35,13 +36,19 @@ class PhotosController extends Controller
                 $imgData[] = $name;
             }
 
+            $vid=DB::table('vehicles')
+                    ->max('id');
+
             $fileModal = new Image();
             $fileModal->name = json_encode($imgData);
             $fileModal->image_path = json_encode($imgData);
+            $fileModal->vid = $vid;
 
             $fileModal->save();
 
             return back()->with('success', 'File has successfully uploaded');
         }
     }
+
+    
 }

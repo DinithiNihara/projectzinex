@@ -23,9 +23,24 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('crequest.create');
+        $service=$request->service;
+        $type=$request->type;
+        $pickup_date=$request->pickup_date;
+        $pickup_time=$request->pickup_time;
+        $return_date=$request->return_date;
+        $vid=$request->vid;
+
+        $time = strtotime($pickup_date);
+        $p_date = date('Y-m-d',$time);
+
+        $time = strtotime($return_date);
+        $r_date = date('Y-m-d',$time);
+
+        $array=[$service,$type,$p_date,$pickup_time,$r_date,$vid];
+
+        return view('crequest.create',compact('array'));
     }
 
     /**
@@ -54,10 +69,11 @@ class RequestController extends Controller
             'p_time'    =>  $request->get('p_time'),
             'r_date'     =>  $request->get('r_date'),
             'r_time'    =>  $request->get('r_time'),
-            'message'     =>  $request->get('message')
+            'message'     =>  $request->get('message'),
+            'vid'     =>  $request->get('vid')
         ]);
         $crequest->save();
-        return redirect()->route('crequest.create')->with('success', 'Data Added');
+        return redirect()->route('crequest.invoice')->with('success', 'Data Added');
     }
 
     /**
@@ -77,10 +93,9 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $crequest = CustomerRequest::find($id);
-        return view('crequest.edit', compact('crequest', 'id'));
+     
     }
 
     /**
@@ -92,27 +107,7 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name'    =>  'required',
-            'email'     =>  'required'
-        ]);
-        $crequest = CustomerRequest::find($id);
-        $crequest->title = $request->get('title');
-        $crequest->name = $request->get('name');
-        $crequest->email = $request->get('email');
-        $crequest->contact = $request->get('contact');
-        $crequest->p_location = $request->get('p_location');
-        $crequest->r_location = $request->get('r_location');
-        $crequest->service = $request->get('service');
-        $crequest->vehicle = $request->get('vehicle');
-        $crequest->passengers = $request->get('passengers');
-        $crequest->p_date = $request->get('p_date');
-        $crequest->p_time = $request->get('p_time');
-        $crequest->r_date = $request->get('r_date');
-        $crequest->r_time = $request->get('r_time');
-        $crequest->message = $request->get('message');
-        $crequest->save();
-        return redirect()->route('crequest.index')->with('success', 'Data Updated');
+        
     }
 
     /**
@@ -126,5 +121,10 @@ class RequestController extends Controller
         $crequest = CustomerRequest::find($id);
         $crequest->delete();
         return redirect()->route('crequest.index')->with('success', 'Data Deleted');
+    }
+
+    public function invoice()
+    {
+        return view('crequest.invoice');
     }
 }

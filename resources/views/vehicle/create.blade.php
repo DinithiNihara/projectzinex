@@ -42,6 +42,9 @@
                     <input type="text" name="rYear" class="form-control" placeholder="Enter Registered Year" />
                 </div>
                 <div class="form-group">
+                    <input type="text" name="service" class="form-control" placeholder="Enter Service" />
+                </div>
+                <div class="form-group">
                     <input type="text" name="cost" class="form-control" placeholder="Enter Cost/per KM" />
                 </div>
                 <div class="form-group">

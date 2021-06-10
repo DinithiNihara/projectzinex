@@ -102,8 +102,7 @@
                                     Rates
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Self Driver Rate</a>
-                                    <a class="dropdown-item" href="#">With Driver Rate</a>
+                                    <a class="dropdown-item" href="#">Usual Rate</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Wedding Car Rate</a>
                                 </div>
@@ -152,7 +151,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                     document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -170,20 +169,19 @@
         <nav class="navbar navbar-expand-xl navbar-light">
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form method="post" action="{{url('offers')}}">
+                <form method="post" action="{{url('offers/search')}}">
                     {{csrf_field()}}
                     <ul class="navbar-nav mr-auto">
                         <div class="container">
-                            <select class="form-control">
-                                <option selected="true" value="Self">Self Drive</option>
-                                <option value="Tours">Tours</option>
-                                <option value="Events">Weddings/ Events</option>
-                                <option value="Transfers">Airport/ City Transfers</option>
+                            <select class="form-control" name="service">
+                                <option selected="true" disabled="disabled">Service Type</option>
+                                <option value="tours">Tours</option>
+                                <option value="wedding">Weddings/ Events</option>
                             </select>
                         </div>
 
                         <div class="container">
-                            <select class="form-control">
+                            <select class="form-control" name="location">
                                 <option selected="true" disabled="disabled">
                                     Pickup Location</option>
                                 <option value="BIA">Bandaranayake International Airport</option>
@@ -192,7 +190,7 @@
                         </div>
 
                         <div class="container">
-                            <select class="form-control">
+                            <select class="form-control" name="type">
                                 <option selected="true" disabled="disabled">Vehicle Type</option>
                                 <option value="Car">Car</option>
                                 <option value="Van">Van</option>
@@ -203,25 +201,24 @@
                         </div>
 
                         <div class="container">
-                            <input class="date form-control" type="text" placeholder="Pickup Date" required>
+                            <input class="date form-control" type="text" name="pickup_date" placeholder="Pickup Date" required>
                         </div>
 
                         <div class="container">
-                            <input type="text" id="timepicker" class="form-control" placeholder="Pickup Time" required>
+                            <input type="text" id="timepicker" class="form-control" name="pickup_time" placeholder="Pickup Time" required>
                         </div>
 
                         <div class="container">
-                            <input class="date form-control" type="text" placeholder="Return Date" required>
+                            <input class="date form-control" type="text" placeholder="Return Date" name="return_date" required>
                         </div>
                         <div class="container">
-                            <a href="{{action('App\Http\Controllers\OfferController@search', 'car')}}"><input type="submit" class="btn navbar-custom" value="Show Offers" /></a>
+                            <input type="submit" class="btn navbar-custom" value="Show Offers" />
                         </div>
                     </ul>
                 </form>
 
             </div>
         </nav>
-
 
         <main class="py-4">
             @yield('content')

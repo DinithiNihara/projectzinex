@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerRequest extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'name','email', 'contact','p_location', 'r_location','service', 'vehicle','passengers', 'p_date','p_time', 'r_date','r_time', 'message'];
+    public $timestamps = false;
+    protected $fillable = ['title', 'name','email', 'contact','p_location', 'r_location','service', 'vehicle','passengers', 'p_date','p_time', 'r_date','r_time', 'message','vid'];
 }

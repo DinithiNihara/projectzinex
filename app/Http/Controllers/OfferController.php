@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Vehicle;
 
 class OfferController extends Controller
@@ -14,7 +15,8 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return view('offer.index');
+        $vehicles = Vehicle::all()->toArray();
+        return view('offer.index',compact('vehicles'));
     }
 
     /**
@@ -83,13 +85,24 @@ class OfferController extends Controller
         //
     }
 
-    public function search($type)
+    public function search(Request $request)
     {
-        /* $vehicles = DB::select('select * from vehicles where type = ?', [$type]);
-        var_dump($vehicles);
-        return view('offers', ['vehicle' => $vehicles]); */
-        /* $result= Vehicle::where("type",$type)->get();
-        return $result; */
-        /* return redirect()->route('offer')->with('success', $result); */
+        $service=$request->get('service');
+        $location=$request->get('location');
+        $type=$request->get('type');
+        $pickup_date=$request->get('pickup_date');
+        $pickup_time=$request->get('pickup_time');
+        $return_date=$request->get('return_date');
+
+        $res=DB::table('vehicles')
+            ->where('type',$type)
+            ->where('service',$service)
+            ->get();
+
+        $r=json_decode(json_encode($res));
+
+        $array=[$service,$location,$type,$pickup_date,$pickup_time,$return_date];
+        
+        return view('offer.index',compact('r'),['array'=>$array]);
     }
 }

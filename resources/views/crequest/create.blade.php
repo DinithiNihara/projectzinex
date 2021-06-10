@@ -21,8 +21,12 @@
                 </div>
             @endif
 
+           
             <form method="post" action="{{ url('crequest') }}">
                 {{ csrf_field() }}
+
+                <input type="hidden" name="vid" value={{$array[5]}} />
+
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
@@ -59,7 +63,7 @@
                 </div>
                 <div class="form-group">
                     <label>Pickup Location </label>
-                    <input type="text" name="p_location" class="form-control" />
+                    <input type="text" name="p_location" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label>Return Location</label>
@@ -67,21 +71,19 @@
                 </div>
                 <div class="form-group">
                     <label>Service Type</label>
-                    <select class="form-control" name="service" id="service">
+                    <select class="form-control" name="service" id="service" >
                         <option selected="true" disabled="disabled">Please Select </option>
-                        <option value="Self_Drive">Self Drive</option>
-                        <option value="Tours">Tours</option>
-                        <option value="Weddings&Events">Weddings & Events</option>
-                        <option value="Airport_Transfers">Airport/ City Transfers</option>
+                        <option value="Tours" {{ $array[0] == 'tours' ? 'selected' : '' }}>Tours</option>
+                        <option value="Weddings&Events" {{ $array[0] == 'wedding' ? 'selected' : '' }}>Weddings & Events</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Vehicle Type</label>
-                    <select class="form-control" name="vehicle" id="vehicle">
-                        <option value="Car" selected>Car</option>
-                        <option value="Van">Van</option>
-                        <option value="SUV">SUV</option>
-                        <option value="Bus">Bus</option>
+                    <select class="form-control" name="vehicle" id="vehicle" >
+                        <option value="Car" {{ $array[1] == 'Car' ? 'selected' : '' }}>Car</option>
+                        <option value="Van" {{ $array[1] == 'Van' ? 'selected' : '' }}>Van</option>
+                        <option value="SUV" {{ $array[1] == 'SUV' ? 'selected' : '' }}>SUV</option>
+                        <option value="Bus" {{ $array[1] == 'Bus' ? 'selected' : '' }}>Bus</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -96,13 +98,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Pickup Date</label>
-                            <input type="date" name="p_date" class="form-control" />
+                            <input type="date" name="p_date" class="form-control" value="{{$array[2]}}"/>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Pickup Time</label>
-                            <input type="time" name="p_time" class="form-control" />
+                            <input type="time" name="p_time" class="form-control"/>
                         </div>
                     </div>
                 </div>
@@ -110,7 +112,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Return Date</label>
-                            <input type="date" name="r_date" class="form-control" />
+                            <input type="date" name="r_date" class="form-control" value="{{$array[4]}}"/>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -129,6 +131,7 @@
                     <input type="submit" class="btn btn-primary" />
                 </div>
             </form>
+           
         </div>
     </div>
 @endsection

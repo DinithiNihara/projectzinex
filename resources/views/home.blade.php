@@ -1,7 +1,5 @@
 <html>
-
     <head>
-
         <style>
             body{
                 background-color: #555555 !important;
@@ -119,7 +117,7 @@
 
         @extends('layouts.app')
 
-@section('content')
+        @section('content')
         <!-- Background slideshow -->
         <div class="container"><ul class="slideshow">
             <li><span>1</span></li>

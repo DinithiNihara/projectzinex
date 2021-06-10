@@ -46,7 +46,8 @@
                                     <th>Return Date</th>
                                     <th>Return Time</th>
                                     <th>Message</th>
-                                    <th>Edit</th>
+                                    <th>Vehicle ID</th>
+                                    <th>Assign a Driver</th>
                                     <th>Delete</th>
                                 </tr>
                                 @foreach ($crequest as $row)
@@ -66,8 +67,13 @@
                                         <td>{{ $row['r_date'] }}</td>
                                         <td>{{ $row['r_time'] }}</td>
                                         <td>{{ $row['message'] }}</td>
-                                        <td><a href="{{ action('App\Http\Controllers\RequestController@edit', $row['id']) }}"
-                                                class="btn btn-warning">Edit</a></td>
+                                        <td>{{ $row['vid'] }}</td>
+                                        <td>
+                                            @if( $row['status'] =='Pending')
+                                            <a href="{{ action('App\Http\Controllers\DriverAssignController@index', $row['id']) }}"
+                                                class="btn btn-warning">Assign</a>
+                                            @endif
+                                        </td>
                                         <td>
                                             <form method="post" class="delete_form"
                                                 action="{{ action('App\Http\Controllers\RequestController@destroy', $row['id']) }}">

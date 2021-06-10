@@ -10,3 +10,4 @@ class Request extends Model
     use HasFactory;
     
 }
+
